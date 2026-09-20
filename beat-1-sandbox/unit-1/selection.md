@@ -60,15 +60,15 @@ Two things worth knowing before you start, neither of which the rubric grades:
 
 ## Eval iterations
 
-Quote source text directly in each field below. Paraphrase does not satisfy them.
-categories: claimed 4/4  clear-accept 7/8  dead-repo 3/3  policy 1/1  scope 3/4
-agreement: 18/20 scored items  (bar: 18/20: PASS)
 
 **Run history**
+1. `agreement: 0/1 scored items` — My first scored test on issue-01 rejected an issue whose gold label was accept.
+2. `agreement: 0/1 scored items` — My test on issue-12 accepted an issue whose gold label was reject.
+3. `agreement: 3/4 scored items` — My run on issues 13–16 disagreed on issue-15.
+4. `agreement: 1/1 scored items` — After clarifying how unresolved claims should be handled, the issue-15 result matched the gold label.
+5. `categories: claimed 4/4  clear-accept 7/8  dead-repo 3/3  policy 1/1  scope 3/4`
+6. `agreement: 18/20 scored items  (bar: 18/20: PASS)` — This was my final complete run saved in `eval-run.txt`.
 
-[The agreement score of each run you did, in order. A single run is a complete answer if
-only one run occurred. **The last score in your list must match the agreement line in the
-`eval-run.txt` you committed** — that file is the record of your final run.]
 
 **Issue analysis**
 
@@ -78,6 +78,8 @@ For `issue-15`, my final rubric returned `reject`, matching the gold label of `r
 **Check rationale**
 
 | Issue unclaimed | Repo-facts block: assignees and linked PRs; comment thread shown in the bundle | Pass only if there is no assignee, no open linked pull request, and every claim in the comments has been explicitly withdrawn, unassigned, or released by a later comment. Treat `@zulipbot claim`, "can I work on this?", "I started working on this", "I plan to work on this", and "my PR is pending" as claims. If the visible comments end with an unresolved claim, fail this check even when the repo-facts block currently says `assignees: none`. | required |
+
+I made this check explicit because assignees and pull requests can miss claims made in comments. Issues 12 and 15 showed that unresolved comment claims should cause rejection to avoid choosing work someone else may be doing.
 
 
 **Trade-offs**
@@ -92,8 +94,6 @@ reasoning is, and not on length — a short honest answer to each earns the full
 This is also the basis for the claim comment you write in Unit 2.
 
 **Selection rationale**
-
-[Answer all three:
 
 1. This issue fits my interest in backend development because it involves an API health endpoint, database access, SQLAlchemy, and testing. Although it uses Python/FastAPI rather than Spring Boot, the database and health-check concepts transfer to Java backend development. Its limited scope—one defect in one route plus a test—also fits the time available.
 
